@@ -1,0 +1,239 @@
+id: fda576b3-0ceb-4bb2-86ac-e054a6e13b45
+name: Topographic map to 3-D Printing File
+project_id: 7d519e99-67f5-46f8-ba1d-21f911241c60
+global_imports: []
+python_global_imports: 'import requests, zipfile
+
+  from io import BytesIO
+
+  import numpy as np
+
+  import geopandas as gpd
+
+  from shapely.geometry import mapping, Polygon
+
+  from shapely.affinity import scale as shapely_scale
+
+  from shapely.ops import unary_union
+
+  import rasterio
+
+  from rasterio.warp import calculate_default_transform, reproject, Resampling
+
+  from rasterio.features import geometry_mask
+
+  import trimesh
+
+  import meshio
+
+  '
+r_global_imports: ''
+requirements:
+- wordcloud==1.9.2
+- rasterio
+- scipy==1.10.1
+- aws-cdk-lib==2.81.0
+- stl
+- geopandas
+- huggingface_hub==0.22.2
+- scikit-learn==1.2.2
+- beautifulsoup4==4.10.0
+- nltk==3.7
+- numpy-stl
+- meshio
+- transformers==4.39.3
+- datasets==2.18.0
+- jsii==1.82.0
+- plotly==5.14.1
+- trimesh
+- seaborn==0.12.2
+linux_packages: []
+environment_variables: []
+is_public: false
+workspace_id: null
+layers:
+- blocks:
+  - auto_size: false
+    canvas_id: fda576b3-0ceb-4bb2-86ac-e054a6e13b45
+    compute_settings:
+      compute_environment_type: 1
+      executor_id: null
+      executor_image_id: null
+    description: ''
+    height: 1000
+    id: 0e8c4301-179e-4779-84c4-8e95dda86761
+    layer_id: 5fd2de94-0877-4abb-82a2-3105f0dea806
+    name: ''
+    parent_id: null
+    properties: {}
+    status: 4
+    type: 1
+    variables: null
+    width: 1600
+    x: -1100
+    y: 6600
+  - auto_size: false
+    canvas_id: fda576b3-0ceb-4bb2-86ac-e054a6e13b45
+    compute_settings:
+      compute_environment_type: 1
+      executor_id: null
+      executor_image_id: null
+    description: ''
+    height: 1000
+    id: 43c30d9d-58b9-4164-8dba-6f2329583fcf
+    layer_id: 5fd2de94-0877-4abb-82a2-3105f0dea806
+    name: ''
+    parent_id: null
+    properties: {}
+    status: 4
+    type: 1
+    variables: null
+    width: 1600
+    x: -1100
+    y: 4300
+  - auto_size: false
+    canvas_id: fda576b3-0ceb-4bb2-86ac-e054a6e13b45
+    compute_settings:
+      compute_environment_type: 1
+      executor_id: null
+      executor_image_id: null
+    description: ''
+    height: 1000
+    id: 477c9e4e-4d96-4dec-b7ee-5a97db4c4236
+    layer_id: 5fd2de94-0877-4abb-82a2-3105f0dea806
+    name: ''
+    parent_id: null
+    properties: {}
+    status: 4
+    type: 1
+    variables: null
+    width: 1600
+    x: 4150
+    y: 7174
+  - auto_size: false
+    canvas_id: fda576b3-0ceb-4bb2-86ac-e054a6e13b45
+    compute_settings:
+      compute_environment_type: 1
+      executor_id: null
+      executor_image_id: null
+    description: ''
+    height: 1000
+    id: 63e0a157-e5bd-4f31-bf79-03e225904f37
+    layer_id: 5fd2de94-0877-4abb-82a2-3105f0dea806
+    name: ''
+    parent_id: null
+    properties: {}
+    status: 4
+    type: 1
+    variables: null
+    width: 1600
+    x: 650
+    y: 7175
+  - auto_size: false
+    canvas_id: fda576b3-0ceb-4bb2-86ac-e054a6e13b45
+    compute_settings:
+      compute_environment_type: 2
+      executor_image_id: null
+      size: 2xlarge
+    description: ''
+    height: 1000
+    id: 960ee15d-4572-4a35-961d-4b9bfa4a98a3
+    layer_id: 5fd2de94-0877-4abb-82a2-3105f0dea806
+    name: ''
+    parent_id: null
+    properties: {}
+    status: 4
+    type: 1
+    variables: null
+    width: 1600
+    x: -2850
+    y: 6050
+  - auto_size: false
+    canvas_id: fda576b3-0ceb-4bb2-86ac-e054a6e13b45
+    compute_settings:
+      compute_environment_type: 1
+      executor_id: null
+      executor_image_id: null
+    description: ''
+    height: 1000
+    id: dff01a77-92a4-4e6d-8068-a71f635382bc
+    layer_id: 5fd2de94-0877-4abb-82a2-3105f0dea806
+    name: ''
+    parent_id: null
+    properties: {}
+    status: 4
+    type: 1
+    variables: null
+    width: 1600
+    x: 650
+    y: 6000
+  - auto_size: false
+    canvas_id: fda576b3-0ceb-4bb2-86ac-e054a6e13b45
+    compute_settings:
+      compute_environment_type: 1
+      executor_id: null
+      executor_image_id: null
+    description: ''
+    height: 1000
+    id: fa155d6c-14af-40aa-8288-f267d82b8d3d
+    layer_id: 5fd2de94-0877-4abb-82a2-3105f0dea806
+    name: ''
+    parent_id: null
+    properties: {}
+    status: 4
+    type: 1
+    variables: null
+    width: 1600
+    x: 2400
+    y: 6599
+  canvas_id: fda576b3-0ceb-4bb2-86ac-e054a6e13b45
+  edges:
+  - canvas_id: fda576b3-0ceb-4bb2-86ac-e054a6e13b45
+    id: 013e57cd-8d0b-43f4-8912-5ec03cecf351
+    layer_id: 5fd2de94-0877-4abb-82a2-3105f0dea806
+    source: 0e8c4301-179e-4779-84c4-8e95dda86761
+    target: dff01a77-92a4-4e6d-8068-a71f635382bc
+  - canvas_id: fda576b3-0ceb-4bb2-86ac-e054a6e13b45
+    id: 1942ddd6-a3cd-4248-8d38-f8977dedc1e6
+    layer_id: 5fd2de94-0877-4abb-82a2-3105f0dea806
+    source: 960ee15d-4572-4a35-961d-4b9bfa4a98a3
+    target: 63e0a157-e5bd-4f31-bf79-03e225904f37
+  - canvas_id: fda576b3-0ceb-4bb2-86ac-e054a6e13b45
+    id: 1c4a7081-a0b7-4b3c-9224-6f50dcc262d7
+    layer_id: 5fd2de94-0877-4abb-82a2-3105f0dea806
+    source: 960ee15d-4572-4a35-961d-4b9bfa4a98a3
+    target: 43c30d9d-58b9-4164-8dba-6f2329583fcf
+  - canvas_id: fda576b3-0ceb-4bb2-86ac-e054a6e13b45
+    id: 3dd3c088-622e-41d6-bf9f-519baa88cd7c
+    layer_id: 5fd2de94-0877-4abb-82a2-3105f0dea806
+    source: fa155d6c-14af-40aa-8288-f267d82b8d3d
+    target: 477c9e4e-4d96-4dec-b7ee-5a97db4c4236
+  - canvas_id: fda576b3-0ceb-4bb2-86ac-e054a6e13b45
+    id: 6b534f0b-1a55-49b1-84ec-ede51d881f69
+    layer_id: 5fd2de94-0877-4abb-82a2-3105f0dea806
+    source: 63e0a157-e5bd-4f31-bf79-03e225904f37
+    target: fa155d6c-14af-40aa-8288-f267d82b8d3d
+  - canvas_id: fda576b3-0ceb-4bb2-86ac-e054a6e13b45
+    id: 71274233-4c55-4395-ba27-4b4f63636914
+    layer_id: 5fd2de94-0877-4abb-82a2-3105f0dea806
+    source: 960ee15d-4572-4a35-961d-4b9bfa4a98a3
+    target: dff01a77-92a4-4e6d-8068-a71f635382bc
+  - canvas_id: fda576b3-0ceb-4bb2-86ac-e054a6e13b45
+    id: 86f67881-26eb-4553-9f2a-48e8910347b5
+    layer_id: 5fd2de94-0877-4abb-82a2-3105f0dea806
+    source: 960ee15d-4572-4a35-961d-4b9bfa4a98a3
+    target: 0e8c4301-179e-4779-84c4-8e95dda86761
+  - canvas_id: fda576b3-0ceb-4bb2-86ac-e054a6e13b45
+    id: 90bd3ee4-4867-4385-8833-ef7a3c483b4f
+    layer_id: 5fd2de94-0877-4abb-82a2-3105f0dea806
+    source: 63e0a157-e5bd-4f31-bf79-03e225904f37
+    target: 477c9e4e-4d96-4dec-b7ee-5a97db4c4236
+  - canvas_id: fda576b3-0ceb-4bb2-86ac-e054a6e13b45
+    id: ed954422-167b-4719-b478-a6403b1bf9db
+    layer_id: 5fd2de94-0877-4abb-82a2-3105f0dea806
+    source: 0e8c4301-179e-4779-84c4-8e95dda86761
+    target: 63e0a157-e5bd-4f31-bf79-03e225904f37
+  id: 5fd2de94-0877-4abb-82a2-3105f0dea806
+  name: zerve agent
+  type: 1
+assets: []
